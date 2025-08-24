@@ -1,1 +1,108 @@
-Placeholder
+VM-to-VM Network Connectivity: Kali Linux ↔ Windows 10 (NAT) on VMware Workstation Pro
+
+Overview
+This project showcases network connectivity between two Virtual Machines—Kali Linux and Windows 10—on VMware Workstation Pro using a shared NAT network. The main goal was to establish communication via ICMP (ping) and troubleshoot Windows Firewall issues that prevent initial connectivity.
+
+Prerequisites
+VMware Workstation Pro
+
+Installed VMs:
+
+Kali Linux
+
+Windows 10
+
+Both VMs configured to use the same NAT network in VMware settings
+
+Network Setup (VMware Workstation Pro)
+Assign Network Adapter:
+
+For both VMs, set the network adapter to NAT via:
+
+VM > Settings > Network Adapter > NAT
+
+Start both VMs and log in.
+
+Steps Performed
+1. Confirm Network Configuration
+On Kali Linux:
+View details with
+
+text
+ifconfig
+Refer to screenshot [kali-linux-ip-details.jpg].
+
+IP: 192.168.133.131
+
+Subnet Mask: 255.255.255.0
+
+On Windows 10:
+View with
+
+text
+ipconfig
+
+IP: 192.168.133.133
+
+Subnet Mask: 255.255.255.0
+
+Gateway: 192.168.133.2
+
+2. Attempt ICMP (Ping) Test
+On Kali Linux terminal:
+
+text
+ping 192.168.133.133
+Result (before troubleshooting):
+
+100% packet loss (no response from Windows VM)
+
+3. Troubleshooting: Windows Defender Firewall
+Cause: Windows Defender Firewall blocks inbound ICMP echo requests (ping) by default.
+
+Solution: Disable Windows Defender Firewall or specifically allow ICMP Echo Requests.
+
+Go to:
+
+text
+Control Panel > System and Security > Windows Defender Firewall > Turn Windows Defender Firewall on or off
+Turn off firewall for private/public networks (for quick troubleshooting).
+
+For production systems, consider enabling just ICMP (Echo Request).
+
+4. Retest ICMP Ping
+On Kali Linux:
+
+text
+ping 192.168.133.133
+Result (after disabling firewall):
+
+Now receives replies with 0% packet loss.
+
+Summary & Key Lessons
+NAT network in VMware allows VMs to communicate internally as on a LAN.
+
+Windows Defender Firewall blocks incoming ICMP Echo by default, impeding basic connectivity tests like ping.
+
+Temporarily disabling the firewall or customizing rules enables troubleshooting and validates network setup.
+
+How to Reproduce
+Create two VMs in VMware Workstation Pro, set both to NAT.
+
+Boot both systems and login.
+
+Check IP addresses (ifconfig/ipconfig).
+
+Ping Windows VM from Kali Linux.
+
+If ICMP fails, disable Windows Defender Firewall on Windows VM.
+
+Ping again—connectivity should be restored.
+
+Notes
+Always re-enable Windows Defender Firewall after tests or configure exceptions only for ICMP if needed for security.
+
+This setup is intended for lab/test environments.
+
+Author
+Vandit Shah
