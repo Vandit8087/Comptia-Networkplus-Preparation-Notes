@@ -1,1 +1,98 @@
-Placeholder
+NATConnect: VM Network Interaction & Packet Analysis
+
+Project Overview:
+
+This project showcases network communication between two Virtual Machines—Kali Linux and Windows 10—connected on the same NAT network in VMware Workstation Pro. The primary goal was to establish connectivity via the ping command and perform in-depth network traffic analysis using Wireshark on both VMs.
+
+Features
+Configured and verified VM IP addresses on NAT network
+
+Used ICMP (ping) commands to test connectivity between Kali Linux and Windows 10
+
+Captured and analyzed network packets bi-directionally using Wireshark
+
+Troubleshot connectivity issues including Windows Defender Firewall blocking pings
+
+Observed real-time ICMP packet exchanges and network traffic patterns
+
+Setup & Configuration
+Environment:
+
+VMware Workstation Pro
+
+Kali Linux VM and Windows 10 VM
+
+Both VMs set to use the same NAT network adapter
+
+Network Configuration:
+
+On Kali Linux: Used ifconfig to check IP — e.g., 192.168.133.131
+
+On Windows 10: Used ipconfig to verify IP — e.g., 192.168.133.133
+
+Connectivity Testing:
+
+From Kali Linux, pinged Windows 10 IP to verify communication.
+
+Initial tests showed 100% packet loss due to firewall restrictions.
+
+Disabled Windows Defender Firewall on Windows 10 to enable ping responses.
+
+Packet Capture & Analysis:
+
+Ran Wireshark on both Kali Linux and Windows 10 VMs simultaneously.
+
+Captured ICMP Echo Request and Reply packets for detailed inspection.
+
+Analyzed packet timestamps, TTL values, and data payloads demonstrating successful two-way communication post firewall adjustment.
+
+Usage
+Start both VMs in VMware Workstation Pro with NAT enabled.
+
+Confirm IP addresses on both VMs.
+
+Run ping from Kali Linux to Windows 10 to test network connectivity.
+
+Launch Wireshark on either or both VMs.
+
+Capture traffic on the respective network interfaces.
+
+Observe ICMP requests and replies relevant to your ping tests.
+
+Troubleshoot firewall if ping does not succeed initially.
+
+Screenshots
+Kali Linux IP Configuration (ifconfig)
+
+Windows IP Configuration (ipconfig)
+
+Ping results before and after firewall changes
+
+Wireshark packet captures showing ICMP exchanges
+
+(Refer to the repository's /screenshots folder for detailed images.)
+
+Key Takeaways
+NAT networking in VMware Workstation Pro allows inter-VM communication on a private subnet.
+
+Windows Defender Firewall blocks ICMP packets by default; disabling or configuring it is essential for ping tests.
+
+Wireshark is a powerful utility to visualize and analyze network traffic in real-time.
+
+Packet captures provide insight into the underlying protocols enabling connectivity between the VMs.
+
+How to Reproduce
+Set up Kali Linux and Windows 10 VMs on the same NAT network in VMware.
+
+Confirm the network configuration on each VM.
+
+Use ping to verify connectivity.
+
+Use Wireshark to capture and analyze traffic.
+
+Adjust firewall settings if ICMP requests are blocked.
+
+Document network interactions for learning or troubleshooting.
+
+Author
+Vandit Shah
