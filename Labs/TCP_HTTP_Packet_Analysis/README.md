@@ -1,4 +1,4 @@
-# Wireshark Analysis of TCP Handshake and HTTP Traffic (Day 8 – Phase 1)
+# Wireshark Analysis of TCP Handshake and HTTP Traffic
 
 ## 📖 Overview
 This project presents a structured analysis of the **TCP three-way handshake** and **HTTP communication** using Wireshark.  
